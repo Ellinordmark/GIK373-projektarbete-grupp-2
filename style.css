@@ -52,3 +52,7 @@ h1 {
   font-family: "Inter", sans-serif;
   font-weight: 300;
 }
+
+.zipper {
+  transform: translate(0rem, -5rem);
+}
