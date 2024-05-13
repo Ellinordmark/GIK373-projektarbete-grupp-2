@@ -7,18 +7,14 @@
 }
 /* -------------------- BODY/ MAIN --------------------- */
 body {
-  width: 100vw;
-  height: 100%;
   margin: 0;
   background-color: var(--light-yellow);
-  position: relative;
 }
 
 .flex {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-bottom: 15rem;
 }
 
 p {
@@ -73,67 +69,13 @@ h1 {
 }
 
 /* --------------------- MAIN ---------------------- */
-.flex-intro {
-  text-align: center;
-}
-
-.flex-intro > h1 {
-  font-size: 20rem;
-  /* text-align: center; */
-  color: var(--dark-yellow);
-  margin: 0;
-  margin: -6rem 0rem -5rem;
-}
-
-.flex-intro > p:nth-child(3) {
-  font-family: "Abril Fatface", serif;
-  font-weight: 400;
-  font-size: 3rem;
-  font-style: normal;
-  margin: 0;
-}
 
 .btn {
   background-color: var(--brown);
   color: white;
   border: none;
-  display: flex;
-  border-radius: 2rem;
-  border: 0.2rem solid var(--brown);
-}
-
-a {
-  color: white;
   text-decoration: none;
-  font-family: "Inter", sans-serif;
-  font-weight: 300;
-  padding: 1rem 1.8rem;
-}
-
-.btn:hover {
-  background-color: var(--dark-yellow);
-  border: 0.2rem solid var(--brown);
-}
-
-/* --------------------- FOOTER ---------------------- */
-
-.footer {
   display: flex;
-  width: 100vw;
-  bottom: 0;
-  position: absolute;
-  height: 15rem;
-}
-
-.footer-decor {
-  width: 100vw;
-  margin-bottom: -1rem;
-  z-index: 1;
-  align-self: flex-end;
-}
-
-.footer-text {
-  position: absolute;
-  text-align: center;
-  z-index: 2;
+  padding: 1rem 1.8rem;
+  border-radius: 2rem;
 }

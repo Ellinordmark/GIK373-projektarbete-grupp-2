@@ -3,11 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>What a waste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style-chart.css" />
   </head>
   <body>
-    <h1>hej</h1>
-    <div><canvas id="chartSCB"> </canvas></div>
+    <header>
+      <div class="hero">
+        <h2>What a</h2>
+        <h1>waste</h1>
+        <p class="hero-title">A website showcasing textile pollution statistics.</p>
+        <div class="hero-zipper">
+          <img src="/images/hero.svg" alt="zipper" />
+        </div>
+      </div>
+    </header>
+    <div>
+      <canvas id="chartSCB"> </canvas>
+    </div>
+    <button class="btn" type="button">
+      <a href="index.html" class="btn">Go back</a>
+    </button>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
   </body>
