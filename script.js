@@ -13,10 +13,9 @@ function sourceFunc(e) {
 
 sources.addEventListener("mouseleave", removeSource);
 
-const remove = document.querySelector(".hej");
-
-function removeSource(e) {
-  remove.remove(e);
+function removeSource() {
+  const remove = document.querySelector(".hej");
+  remove.remove();
 }
 
 // const newSource = document.createElement("p");
