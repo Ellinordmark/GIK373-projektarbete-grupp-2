@@ -24,28 +24,15 @@ function removeSource() {
 
 // ------------------- ANIMATIONER -------------------- //
 
-// const text = document.getElementById("text-animation");
-// const letters = text.textContent.split("");
+const heading = document.getElementById("text-animation");
+const textContent = heading.textContent.trim();
+const letters = textContent.split("");
 
-// text.textContent = "";
+heading.textContent = ""; // Clear the text content
 
-// letters.forEach((letter, index) => {
-//   const span = document.createElement("span");
-//   span.textContent = letter;
-//   span.style.animationDelay = `${index * 10}ms`;
-//   text.appendChild(span);
-// });
-
-// const textContainer = document.getElementById("text-animation");
-// const textContent = textContainer.textContent.trim();
-// const letters = textContent.split("");
-
-// textContainer.textContent = ""; // Clear the text content
-
-// letters.forEach((letter, index) => {
-//   const span = document.createElement("span");
-//   span.textContent = letter;
-//   span.style.animationDelay = `${index * 100}ms`; // Adjust the delay here
-//   textContainer.insertAdjacentHTML("beforeend", span);
-//   console.log(span);
-// });
+letters.forEach((letter, index) => {
+  const span = document.createElement("span");
+  span.textContent = letter;
+  span.style.animationDelay = `${index * 400}ms`; // Adjust the delay here
+  heading.appendChild(span);
+});
