@@ -107,6 +107,8 @@ fetch(request)
         label: "Germany",
         // data: uniqueValues,
         data: values.slice(84, 98),
+        // backgroundColor: "maroon",
+        // borderColor: "maroon",
       },
 
       {
@@ -127,6 +129,30 @@ fetch(request)
       type: "line",
       data,
       options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        elements: {
+          line: {
+            borderWidth: 0.8,
+            tension: 0.2,
+          },
+          point: {
+            pointRadius: 4,
+            pointHoverRadius: 6,
+          },
+        },
+        plugins: {
+          // title: {
+          //   display: true,
+          //   text: "Amount of CO2e released by country from 2008 to 2021",
+          //   color: "#472907",
+          //   font: {
+          //     size: 20,
+          //     family: "Inter",
+          //     weight: 200,
+          //   },
+          // },
+        },
         scales: {
           x: {
             display: true,
@@ -134,7 +160,7 @@ fetch(request)
           y: {
             display: true,
             type: "logarithmic",
-            maxTicksLimit: 10,
+            afterBuildTicks: (axis) => (axis.ticks = [10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000].map((v) => ({ value: v }))),
           },
         },
       },
@@ -143,3 +169,26 @@ fetch(request)
     const canvas = document.getElementById("chartSCB");
     const myChart = new Chart(canvas, config);
   });
+//
+// Chart.defaults.elements.bar.borderWidth = 0.2;
+// const div = document.getElementsByClassName("chart-container");
+
+// function myFunction(x) {
+//   if (x.matches) {
+//     // If media query matches
+//     div.style.backgroundColor = "yellow";
+//   } else {
+//     div.style.backgroundColor = "pink";
+//   }
+// }
+
+// // Create a MediaQueryList object
+// var x = window.matchMedia("(max-width: 700px)");
+
+// // Call listener function at run time
+// myFunction(x);
+
+// // Attach listener function on state changes
+// x.addEventListener("change", function () {
+//   myFunction(x);
+// });
