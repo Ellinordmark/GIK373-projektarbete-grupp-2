@@ -1,3 +1,5 @@
+// ---------------------- API 1: UTSLÄPP ---------------------------
+
 const url = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI1301/MI1301F/MI1301MPSPINN";
 
 const query = {
@@ -46,24 +48,24 @@ const request = new Request(url, {
 fetch(request)
   .then((response) => response.json())
   .then((dataSCB) => {
-    console.log(dataSCB);
+    // console.log(dataSCB);
 
     // Gör om objektets värden till en array
     const values = dataSCB.data.map((value) => value.values[0]);
-    console.log("Värden:", values);
+    // console.log("Värden:", values);
 
     // Hämta ut länder och årtal
     const labels = dataSCB.data.map((value) => value.key[0]);
-    console.log("Etiketter, länder:", labels);
+    // console.log("Etiketter, länder:", labels);
 
     const years = dataSCB.data.map((value) => value.key[4]);
-    console.log("Etiketter, år:", years);
+    // console.log("Etiketter, år:", years);
 
     // Gör om labels till unika värden
-    const uniqueLabels = [...new Set(labels)];
+    // const uniqueLabels = [...new Set(labels)];
     const uniqueYears = [...new Set(years)];
 
-    console.log("Unika labels:", uniqueLabels);
+    // console.log("Unika labels:", uniqueLabels);
 
     // const splitValue = values.slice(14);
     // const splitValue2 = values.slice(28);
@@ -123,7 +125,7 @@ fetch(request)
       datasets,
     };
 
-    console.log(data);
+    // console.log(data);
 
     const config = {
       type: "line",
@@ -169,26 +171,104 @@ fetch(request)
     const canvas = document.getElementById("chartSCB");
     const myChart = new Chart(canvas, config);
   });
-//
-// Chart.defaults.elements.bar.borderWidth = 0.2;
-// const div = document.getElementsByClassName("chart-container");
 
-// function myFunction(x) {
-//   if (x.matches) {
-//     // If media query matches
-//     div.style.backgroundColor = "yellow";
-//   } else {
-//     div.style.backgroundColor = "pink";
-//   }
-// }
+// ---------------------- API 2: AVFALL ---------------------------
 
-// // Create a MediaQueryList object
-// var x = window.matchMedia("(max-width: 700px)");
+const url2 = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI0305/MI0305T01C";
 
-// // Call listener function at run time
-// myFunction(x);
+const query2 = {
+  query: [
+    {
+      code: "OfarligtFarligt",
+      selection: {
+        filter: "item",
+        values: ["O", "F"],
+      },
+    },
+    {
+      code: "SNI2007MI",
+      selection: {
+        filter: "item",
+        values: ["C13-15"],
+      },
+    },
+    {
+      code: "Avfallsslag",
+      selection: {
+        filter: "item",
+        values: ["TOT"],
+      },
+    },
+  ],
+  response: {
+    format: "JSON",
+  },
+};
 
-// // Attach listener function on state changes
-// x.addEventListener("change", function () {
-//   myFunction(x);
-// });
+const request2 = new Request(url2, {
+  method: "POST",
+  body: JSON.stringify(query2),
+});
+
+fetch(request2)
+  .then((response) => response.json())
+  .then((dataSCB2) => {
+    console.log(dataSCB2);
+
+    // Gör om objektets värden till en array
+    const values = dataSCB2.data.map((value) => value.values[0]);
+    console.log("Värden: ", values);
+
+    const nonHazardous = values.slice(6, 12);
+
+    const sumNonHazardous = nonHazardous.reduce(getSum, 0);
+    console.log(sumNonHazardous);
+
+    const hazardous = values.slice(0, 6);
+    const sumHazardous = hazardous.reduce(getSum, 0);
+    function getSum(total, num) {
+      return total + Math.round(num);
+    }
+    console.log(sumHazardous);
+
+    // Hämta ut kategori
+    const labels = dataSCB2.data.map((value) => value.key[0]);
+    console.log("Kategori: ", labels);
+
+    //Lägg ihop alla värden per kategori
+    const uniqueCategories = [...new Set(labels)];
+
+    const datasets = [
+      {
+        // labels: ["ofarlig", "farlig"],
+        data: [sumHazardous, sumNonHazardous],
+      },
+    ];
+
+    const data2 = {
+      labels: ["Non-hazardous", "Hazardous"],
+      datasets,
+    };
+
+    const config2 = {
+      type: "doughnut",
+      data: data2,
+      options: {
+        rotation: -25,
+        elements: {
+          arc: {
+            hoverOffset: 30,
+          },
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+        },
+      },
+    };
+    const canvas2 = document.getElementById("chartSCB2");
+    const myChart2 = new Chart(canvas2, config2);
+  });
