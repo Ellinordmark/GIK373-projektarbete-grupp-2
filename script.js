@@ -128,3 +128,37 @@ letters.forEach((letter, index) => {
   span.style.animationIterationCount = 100;
   heading.appendChild(span);
 });
+
+// ------------------- MEDIA QUERIES -------------------- //
+
+function myFunction(x) {
+  if (x.matches) {
+    // If media query matches
+    source1.insertAdjacentHTML("beforeend", `<p class="source-link">Source: <a href="https://www.unep.org/news-and-stories/story/putting-brakes-fast-fashion">The European Parliament</a></p>`);
+    source2.insertAdjacentHTML("beforeend", `<p class="source-link">Source: <a href="https://www.unep.org/news-and-stories/story/putting-brakes-fast-fashion">The European Parliament</a></p>`);
+    source3.insertAdjacentHTML(
+      "beforeend",
+      `<p class="source-link">Source: <a href="https://www.eea.europa.eu/publications/microplastics-from-textiles-towards-a">European Environment Agency</a></p>`
+    );
+    source4.insertAdjacentHTML("beforeend", `<p class="source-link">Source: <a href="https://www.bbc.com/future/article/20200710-why-clothes-are-so-hard-to-recycle">BBC</a></p>`);
+    source5.insertAdjacentHTML(
+      "beforeend",
+      `<p class="source-link">Source: <a href="https://www.europarl.europa.eu/topics/en/article/20201208STO93327/the-impact-of-textile-production-and-waste-on-the-environment-infographics">The European Parliament</a></p>`
+    );
+    source6.insertAdjacentHTML(
+      "beforeend",
+      `<p class="source-link">Source: <a href="https://www.europarl.europa.eu/topics/en/article/20201208STO93327/the-impact-of-textile-production-and-waste-on-the-environment-infographics">The European Parliament</a></p>`
+    );
+  }
+}
+
+// Create a MediaQueryList object
+var x = window.matchMedia("(max-width: 700px)");
+
+// Call listener function at run time
+myFunction(x);
+
+// Attach listener function on state changes
+x.addEventListener("change", function () {
+  myFunction(x);
+});

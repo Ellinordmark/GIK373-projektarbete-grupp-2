@@ -21,7 +21,10 @@ p {
   font-family: "Inter", sans-serif;
   font-weight: 300;
   color: var(--brown);
+  text-align: center;
+  max-width: 80ch;
 }
+
 /* -------------------- HERO ---------------------- */
 
 .hero {
@@ -78,6 +81,7 @@ h1 {
   border-radius: 2rem;
   border: 0.2rem solid var(--brown);
   justify-items: center;
+  margin-top: 2rem;
 }
 
 .btn > a {
@@ -94,10 +98,13 @@ h1 {
   border: 0.2rem solid var(--brown);
 }
 
+/* --------------------- CHARTS ---------------------- */
+
 .chart-container {
   margin: 0 auto;
   width: 80%;
   height: 60vh;
+  margin-bottom: 2rem;
 }
 
 .chart-container-pie {
@@ -105,19 +112,108 @@ h1 {
   width: 80%;
   height: 70vh;
   justify-items: center;
+  padding-bottom: 3rem;
+  margin-bottom: -1rem;
 }
 
 h3 {
   margin: 2rem;
   color: var(--brown);
+  font-size: 1.7rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  text-align: center;
 }
 
-/* --------------- MEDIA QUERIES ---------------- */
+h4 {
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+  font-size: 0.8rem;
+  margin-top: -1rem;
+  color: var(--brown);
+  width: 80ch;
+  text-align: center;
+}
 
-@media screen and (max-width: 700px) {
-  .chart-container {
-    margin: 0 auto;
-    width: 100%;
-    height: 50vh;
+h4 > a {
+  color: var(--brown);
+}
+h4 > a:visited {
+  color: var(--brown);
+}
+a {
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+}
+
+.flex > a {
+  margin-bottom: 4rem;
+  color: var(--brown);
+}
+
+.flex > a:visited {
+  color: var(--brown);
+}
+/* --------------------- FOOTER ---------------------- */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  bottom: 0;
+  /* height: 10rem; */
+  /* position: absolute; */
+  margin-top: clamp(0.5rem, 6vh, 8rem);
+}
+
+.footer-decor {
+  width: 100vw;
+  /* margin-bottom: -1rem; */
+  z-index: 1;
+  align-self: flex-end;
+}
+
+.footer-text {
+  /* position: absolute; */
+  z-index: 2;
+  translate: 0rem 10rem;
+  font-size: 0.8rem;
+}
+
+/* --------------------- MEDIA QUERIES ---------------------- */
+
+@media screen and (max-width: 768px) {
+  .footer-text {
+    translate: 0rem 7rem;
+  }
+
+  .source-link {
+    font-size: 0.5rem;
+  }
+
+  h4 {
+    width: 40ch;
+  }
+}
+
+@media screen and (max-width: 564px) {
+  .footer-text {
+    translate: 0rem 5rem;
+  }
+
+  p {
+    font-size: 0.7rem;
+  }
+
+  .btn > a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footer-text {
+    translate: 0rem 4rem;
   }
 }

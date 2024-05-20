@@ -254,6 +254,11 @@ fetch(request2)
       type: "doughnut",
       data: data2,
       options: {
+        layout: {
+          padding: {
+            bottom: 20,
+          },
+        },
         rotation: -25,
         elements: {
           arc: {
