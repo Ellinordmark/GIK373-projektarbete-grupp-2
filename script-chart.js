@@ -1,3 +1,6 @@
+const autocolors = window["chartjs-plugin-autocolors"];
+Chart.register(autocolors);
+
 // ---------------------- API 1: UTSLÄPP ---------------------------
 
 const url = "https://api.scb.se/OV0104/v1/doris/sv/ssd/START/MI/MI1301/MI1301F/MI1301MPSPINN";
@@ -52,71 +55,60 @@ fetch(request)
 
     // Gör om objektets värden till en array
     const values = dataSCB.data.map((value) => value.values[0]);
-    // console.log("Värden:", values);
 
-    // Hämta ut länder och årtal
+    // Hämta ut länder och årtal, gör årtalen unika
     const labels = dataSCB.data.map((value) => value.key[0]);
-    // console.log("Etiketter, länder:", labels);
 
     const years = dataSCB.data.map((value) => value.key[4]);
-    // console.log("Etiketter, år:", years);
-
-    // Gör om labels till unika värden
-    // const uniqueLabels = [...new Set(labels)];
     const uniqueYears = [...new Set(years)];
 
-    // console.log("Unika labels:", uniqueLabels);
-
-    // const splitValue = values.slice(14);
-    // const splitValue2 = values.slice(28);
+    // Dela upp värdena i olika arrayer
+    const dataDK = values.splice(0, uniqueYears.length);
+    const dataIN = values.splice(0, uniqueYears.length);
+    const dataJP = values.splice(0, uniqueYears.length);
+    const dataCN = values.splice(0, uniqueYears.length);
+    const dataNK = values.splice(0, uniqueYears.length);
+    const dataSE = values.splice(0, uniqueYears.length);
+    const dataDE = values.splice(0, uniqueYears.length);
+    const dataUS = values.splice(0, uniqueYears.length);
 
     const datasets = [
       {
         label: "Denmark",
-        // data: uniqueValues,
-        data: values.slice(0, 14),
+        data: dataDK,
       },
       {
         label: "India",
-        // data: uniqueValues,
-        data: values.slice(14, 28),
+        data: dataIN,
       },
 
       {
         label: "Japan",
-        // data: uniqueValues,
-        data: values.slice(28, 42),
+        data: dataJP,
       },
 
       {
         label: "China",
-        // data: uniqueValues,
-        data: values.slice(42, 56),
+        data: dataCN,
       },
 
       {
         label: "Norway",
-        // data: uniqueValues,
-        data: values.slice(56, 70),
+        data: dataNK,
       },
 
       {
         label: "Sweden",
-        // data: uniqueValues,
-        data: values.slice(70, 84),
+        data: dataSE,
       },
       {
         label: "Germany",
-        // data: uniqueValues,
-        data: values.slice(84, 98),
-        // backgroundColor: "maroon",
-        // borderColor: "maroon",
+        data: dataDE,
       },
 
       {
         label: "United States",
-        // data: uniqueValues,
-        data: values.slice(98, 112),
+        data: dataUS,
       },
     ];
 
@@ -125,12 +117,13 @@ fetch(request)
       datasets,
     };
 
-    // console.log(data);
-
     const config = {
       type: "line",
       data,
       options: {
+        autocolors: {
+          mode: "dataset",
+        },
         responsive: true,
         maintainAspectRatio: false,
         elements: {
@@ -143,23 +136,16 @@ fetch(request)
             pointHoverRadius: 6,
           },
         },
-        plugins: {
-          // title: {
-          //   display: true,
-          //   text: "Amount of CO2e released by country from 2008 to 2021",
-          //   color: "#472907",
-          //   font: {
-          //     size: 20,
-          //     family: "Inter",
-          //     weight: 200,
-          //   },
-          // },
-        },
         scales: {
           x: {
             display: true,
           },
           y: {
+            ticks: {
+              callback: function (value, index, ticks) {
+                return value + " t";
+              },
+            },
             display: true,
             type: "logarithmic",
             afterBuildTicks: (axis) => (axis.ticks = [10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000].map((v) => ({ value: v }))),
@@ -213,35 +199,41 @@ const request2 = new Request(url2, {
 fetch(request2)
   .then((response) => response.json())
   .then((dataSCB2) => {
-    console.log(dataSCB2);
+    // console.log(dataSCB2);
 
     // Gör om objektets värden till en array
     const values = dataSCB2.data.map((value) => value.values[0]);
-    console.log("Värden: ", values);
+    // console.log("Värden: ", values);
 
-    const nonHazardous = values.slice(6, 12);
+    // Hämta ut kategori
+    const labels = dataSCB2.data.map((value) => value.key[0]);
+    // console.log("Kategori: ", labels);
 
+    // Hämta ut år och gör unika
+    const years = dataSCB2.data.map((value) => value.key[3]);
+    const uniqueYears = [...new Set(years)];
+
+    // Använd år för att dela arrayen
+    const hazardous = values.splice(0, uniqueYears.length);
+    // console.log("Farliga", hazardous);
+
+    const nonHazardous = values.splice(0, uniqueYears.length);
+    // console.log("Ofarliga", nonHazardous);
+
+    //Summerar alla värden
     const sumNonHazardous = nonHazardous.reduce(getSum, 0);
-    console.log(sumNonHazardous);
-
-    const hazardous = values.slice(0, 6);
     const sumHazardous = hazardous.reduce(getSum, 0);
     function getSum(total, num) {
       return total + Math.round(num);
     }
-    console.log(sumHazardous);
-
-    // Hämta ut kategori
-    const labels = dataSCB2.data.map((value) => value.key[0]);
-    console.log("Kategori: ", labels);
-
-    //Lägg ihop alla värden per kategori
-    const uniqueCategories = [...new Set(labels)];
+    // console.log(sumHazardous);
 
     const datasets = [
       {
         // labels: ["ofarlig", "farlig"],
         data: [sumHazardous, sumNonHazardous],
+        backgroundColor: ["#849d5d", "#db7b74"],
+        borderColor: ["#849d5d", "#db7b74"],
       },
     ];
 
@@ -262,7 +254,7 @@ fetch(request2)
         rotation: -25,
         elements: {
           arc: {
-            hoverOffset: 30,
+            hoverOffset: 20,
           },
         },
         responsive: true,

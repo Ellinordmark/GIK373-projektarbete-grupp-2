@@ -9,6 +9,7 @@
 body {
   margin: 0;
   background-color: var(--light-yellow);
+  cursor: default;
 }
 
 .flex {
@@ -112,8 +113,8 @@ h1 {
   width: 80%;
   height: 70vh;
   justify-items: center;
-  padding-bottom: 3rem;
-  margin-bottom: -1rem;
+  /* padding-bottom: 3rem; */
+  margin-bottom: 2rem;
 }
 
 h3 {
@@ -162,20 +163,16 @@ a {
   align-items: center;
   width: 100vw;
   bottom: 0;
-  /* height: 10rem; */
-  /* position: absolute; */
   margin-top: clamp(0.5rem, 6vh, 8rem);
 }
 
 .footer-decor {
   width: 100vw;
-  /* margin-bottom: -1rem; */
   z-index: 1;
   align-self: flex-end;
 }
 
 .footer-text {
-  /* position: absolute; */
   z-index: 2;
   translate: 0rem 10rem;
   font-size: 0.8rem;
@@ -209,6 +206,15 @@ a {
   .btn > a {
     padding: 0.4rem 0.8rem;
     font-size: 0.7rem;
+  }
+
+  .chart-container-pie {
+    width: 80%;
+    height: 50vh;
+  }
+
+  h3 {
+    font-size: 1.3rem;
   }
 }
 

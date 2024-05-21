@@ -23,7 +23,7 @@ const source2 = document.querySelector(".source-2");
 const colorChange2 = document.getElementById("S2");
 
 function sourceFunc2() {
-  const html = `<p class="source-link">Source: <a href="https://www.unep.org/news-and-stories/story/putting-brakes-fast-fashion">The European Parliament</a></p>`;
+  const html = `<p class="source-link">Source: <a href="https://www.bbc.com/future/article/20230227-how-to-recycle-your-clothes">BBC</a></p>`;
   source2.insertAdjacentHTML("beforeend", html);
   colorChange2.style.color = "#e39800";
 }
@@ -128,6 +128,22 @@ letters.forEach((letter, index) => {
   span.style.animationIterationCount = 100;
   heading.appendChild(span);
 });
+
+// const observer = new IntersectionObserver((entries) => {
+//   entries.forEach((entry) => {
+//     const square = entry.target.querySelector("#waste-text");
+
+//     if (entry.isIntersecting) {
+//       square.classList.add("text-animation");
+//       return; // if we added the class, exit the function
+//     }
+
+//     // We're not intersecting, so remove the class!
+//     square.classList.remove("text-animation");
+//   });
+// });
+
+// observer.observe(document.querySelector(".animation-wrapper"));
 
 // ------------------- MEDIA QUERIES -------------------- //
 
