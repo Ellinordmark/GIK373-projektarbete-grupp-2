@@ -99,6 +99,28 @@ h1 {
   background-color: var(--dark-yellow);
 }
 
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #ecddbf; /* Set a background color */
+  color: var(--brown); /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 2rem; /* Rounded corners */
+  font-size: 0.8rem; /* Increase font size */
+  font-family: "Inter", sans-serif;
+  font-weight: 300;
+}
+
+#myBtn:hover {
+  background-color: var(--bright-yellow); /* Add a dark-grey background on hover */
+}
+
 /* --------------------- CHARTS ---------------------- */
 
 .chart-container {
@@ -143,6 +165,7 @@ h4 > a:visited {
 }
 a {
   font-family: "Inter", sans-serif;
+  font-weight: 300;
   font-size: 0.8rem;
 }
 
@@ -218,10 +241,75 @@ a {
   h3 {
     font-size: 1.3rem;
   }
+
+  #myBtn {
+    padding: 10px;
+    font-size: 0.7rem;
+  }
 }
 
 @media screen and (max-width: 320px) {
   .footer-text {
     translate: 0rem 4rem;
+  }
+}
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #ffffff;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader {
+  color: #ffffff;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: "";
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
   }
 }

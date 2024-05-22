@@ -23,17 +23,18 @@
       </div>
     </header>
     <main class="flex">
+      <button onclick="topFunction()" id="myBtn" title="Go to top">To top ↑</button>
       <h3>CO2e emissions from the textile industry </br>(per country, 2008-2021)</h3>
       <h4>Unit: tonnes,  Source: <a href="https://www.scb.se/">SCB</a></h4>
-      <div class="chart-container">
+      <div class="chart-container" class="loader">
         <canvas id="chartSCB"> </canvas>
       </div>
       <h4>Definition: Carbon dioxide equivalent (CO2e) means the number of metric tons of CO2 emissions with the same global warming potential as one metric ton of another greenhouse gas.</h4>
       <a href="https://www.epa.gov/">(United States Environmental Protection Agency)</a>
         <h3>Hazardous and non-hazardous waste from textiles </br>(Sweden, 2010-2020)</h3>
         <h4>Unit: tonnes,  Source: <a href="https://www.scb.se">SCB</a></h4>
-      <div class="chart-container-pie">
-        <canvas id="chartSCB2"></canvas>
+      <div class="chart-container-pie" class="loader">
+        <canvas id="chartSCB2" ></canvas>
       </div>
       <h4>Definition: A hazardous waste is a waste with properties that make it dangerous or capable of having a harmful effect on human health or the environment.</h4>
       <a href="https://www.epa.gov/hw/learn-basics-hazardous-waste">(United States Environmental Protection Agency)</a>
