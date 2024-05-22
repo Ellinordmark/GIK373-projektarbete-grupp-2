@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Inter:wght@100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style-chart.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@latest/pace-theme-default.min.css">
+</head>
   </head>
   <body>
     <header>
@@ -22,14 +24,14 @@
     </header>
     <main class="flex">
       <h3>CO2e emissions from the textile industry </br>(per country, 2008-2021)</h3>
-      <h4>Unit: tonnes,  Source: <a href="www.scb.se">SCB</a></h4>
+      <h4>Unit: tonnes,  Source: <a href="https://www.scb.se/">SCB</a></h4>
       <div class="chart-container">
         <canvas id="chartSCB"> </canvas>
       </div>
       <h4>Definition: Carbon dioxide equivalent (CO2e) means the number of metric tons of CO2 emissions with the same global warming potential as one metric ton of another greenhouse gas.</h4>
       <a href="https://www.epa.gov/">(United States Environmental Protection Agency)</a>
         <h3>Hazardous and non-hazardous waste from textiles </br>(Sweden, 2010-2020)</h3>
-        <h4>Unit: tonnes,  Source: <a href="www.scb.se">SCB</a></h4>
+        <h4>Unit: tonnes,  Source: <a href="https://www.scb.se">SCB</a></h4>
       <div class="chart-container-pie">
         <canvas id="chartSCB2"></canvas>
       </div>
@@ -43,6 +45,7 @@
       <p class="footer-text">Website written by: </br> Ellinor Nordmark & Linda Hedström</p>
       <img src="/images/wave.svg" class="footer-decor" alt="wave" />
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js"></script>
     <script src=https://cdn.jsdelivr.net/npm/chartjs-plugin-autocolors></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
     <script src="script-chart.js"></script>

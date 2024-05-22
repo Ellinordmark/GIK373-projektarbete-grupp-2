@@ -18,7 +18,7 @@ function removeSource1() {
 source1.addEventListener("mouseleave", removeSource1);
 source1.addEventListener("mouseenter", sourceFunc1);
 
-//SOURCE 2 GÖR DYNAMISK
+//SOURCE 2
 const source2 = document.querySelector(".source-2");
 const colorChange2 = document.getElementById("S2");
 
@@ -115,35 +115,27 @@ source6.addEventListener("mouseleave", removeSource6);
 
 // ------------------- ANIMATIONER -------------------- //
 
-const heading = document.getElementById("text-animation");
-const textContent = heading.textContent.trim();
-const letters = textContent.split("");
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("in-view");
+        entry.target.classList.remove("not-in-view");
+      } else {
+        entry.target.classList.remove("in-view");
+        entry.target.classList.add("not-in-view");
+      }
+    });
+  },
+  {
+    rootMargin: "-50px",
+    threshold: [0, 0.5, 1],
+  }
+);
 
-heading.textContent = ""; // Clear the text content
+const tags = document.querySelector(".text-animation");
 
-letters.forEach((letter, index) => {
-  const span = document.createElement("span");
-  span.textContent = letter;
-  span.style.animationDelay = `${index * 600}ms`; // Adjust the delay here
-  span.style.animationIterationCount = 100;
-  heading.appendChild(span);
-});
-
-// const observer = new IntersectionObserver((entries) => {
-//   entries.forEach((entry) => {
-//     const square = entry.target.querySelector("#waste-text");
-
-//     if (entry.isIntersecting) {
-//       square.classList.add("text-animation");
-//       return; // if we added the class, exit the function
-//     }
-
-//     // We're not intersecting, so remove the class!
-//     square.classList.remove("text-animation");
-//   });
-// });
-
-// observer.observe(document.querySelector(".animation-wrapper"));
+observer.observe(tags);
 
 // ------------------- MEDIA QUERIES -------------------- //
 

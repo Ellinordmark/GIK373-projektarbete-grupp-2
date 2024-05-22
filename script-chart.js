@@ -121,6 +121,17 @@ fetch(request)
       type: "line",
       data,
       options: {
+        plugins: {
+          legend: {
+            onHover: (event) => {
+              event.native.target.style.cursor = "pointer";
+            },
+            onLeave: (event) => {
+              event.native.target.style.cursor = "default";
+            },
+          },
+        },
+
         autocolors: {
           mode: "dataset",
         },
@@ -262,6 +273,13 @@ fetch(request2)
         plugins: {
           legend: {
             position: "top",
+            onHover: (event) => {
+              // console.log(event.native.target.style.cursor);
+              event.native.target.style.cursor = "pointer";
+            },
+            onLeave: (event) => {
+              event.native.target.style.cursor = "default";
+            },
           },
         },
       },
