@@ -134,6 +134,22 @@ h1 {
   margin-bottom: 2rem;
 }
 
+.flex-link > a:visited {
+  color: var(--brown);
+}
+
+.flex-link > a {
+  color: var(--brown);
+}
+
+.flex-link {
+  font-size: 0.85rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
 .grid-container {
   display: flex;
   width: 90%;

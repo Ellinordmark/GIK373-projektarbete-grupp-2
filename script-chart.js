@@ -154,14 +154,13 @@ fetch(request)
             display: true,
           },
           y: {
+            title: {
+              display: true,
+              text: "CO2e emissions in tonnes",
+            },
             display: true,
             type: "logarithmic",
             afterBuildTicks: (axis) => (axis.ticks = [10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000].map((v) => ({ value: v }))),
-            ticks: {
-              callback: function (value) {
-                return value + " t";
-              },
-            },
           },
         },
       },
