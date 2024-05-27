@@ -1,3 +1,5 @@
+// Linda Hedström (h22linhe), Ellinor Nordmark (h22ellno)
+
 // ------------------- EVENT LISTENERS -------------------- //
 
 const source1 = document.querySelector(".source-1");
@@ -128,7 +130,7 @@ const observer = new IntersectionObserver(
     });
   },
   {
-    rootMargin: "-50px",
+    rootMargin: "-100px",
     threshold: [0, 0.5, 1],
   }
 );
