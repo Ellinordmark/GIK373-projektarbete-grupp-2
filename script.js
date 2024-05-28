@@ -2,9 +2,11 @@
 
 // ------------------- EVENT LISTENERS -------------------- //
 
+// Skapa hover-funktioner för grid-items
 const source1 = document.querySelector(".source-1");
 const colorChange1 = document.getElementById("S1");
 
+//SOURCE 1
 function sourceFunc1() {
   const html = `<p class="source-link">Source: <a href="https://www.unep.org/news-and-stories/story/putting-brakes-fast-fashion">The European Parliament</a></p>`;
   source1.insertAdjacentHTML("beforeend", html);
@@ -117,6 +119,7 @@ source6.addEventListener("mouseleave", removeSource6);
 
 // ------------------- ANIMATIONER -------------------- //
 
+// 121-animation, animation spelas när elementet syns i fönstret
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -139,21 +142,22 @@ const tags = document.querySelector(".text-animation");
 
 observer.observe(tags);
 
-// Scroll to top
-let mybutton = document.getElementById("myBtn");
+// Scroll to top-knapp
+const myButton = document.getElementById("myBtn");
 
 window.onscroll = function () {
   scrollFunction();
 };
 
+// Om användaren scrollat ner 500px i body visas knappen
 function scrollFunction() {
   if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    mybutton.style.display = "block";
+    myButton.style.display = "block";
   } else {
-    mybutton.style.display = "none";
+    myButton.style.display = "none";
   }
 }
-
+// Scrollar till toppen av sidan
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
@@ -161,9 +165,11 @@ function topFunction() {
 
 // ------------------- MEDIA QUERIES -------------------- //
 
+// Skriv ut länkar till källa i grid om fönstret är mindre än 700px
+const x = window.matchMedia("(max-width: 700px)");
+
 function myFunction(x) {
   if (x.matches) {
-    // If media query matches
     source1.insertAdjacentHTML("beforeend", `<p class="source-link">Source: <a href="https://www.unep.org/news-and-stories/story/putting-brakes-fast-fashion">The European Parliament</a></p>`);
     source2.insertAdjacentHTML("beforeend", `<p class="source-link">Source: <a href="https://www.unep.org/news-and-stories/story/putting-brakes-fast-fashion">The European Parliament</a></p>`);
     source3.insertAdjacentHTML(
@@ -181,8 +187,6 @@ function myFunction(x) {
     );
   }
 }
-
-var x = window.matchMedia("(max-width: 700px)");
 
 myFunction(x);
 

@@ -7,7 +7,7 @@
   --brown: #472907;
   --bright-green: #a1c144;
 }
-/* -------------------- BODY/ MAIN --------------------- */
+/* -------------------- BODY --------------------- */
 body {
   width: 100vw;
   height: 100%;
@@ -35,12 +35,13 @@ p {
   align-content: center;
 }
 
-/* -------------------- HERO ---------------------- */
-
+/* Ladd-bar för sidan */
 .pace .pace-progress {
   background: var(--bright-green) !important;
   height: 4px !important;
 }
+
+/* -------------------- HERO ---------------------- */
 
 .hero {
   display: flex;
@@ -87,33 +88,11 @@ h1 {
 
 .flex-intro > h1 {
   font-size: clamp(15rem, 40vw, 30rem);
-  /* text-align: center; */
   background: linear-gradient(to bottom, var(--bright-yellow), var(--dark-yellow));
   -webkit-text-fill-color: transparent;
   background-clip: text;
   margin-top: -20%;
   margin-bottom: -20%;
-}
-
-.in-view {
-  animation: fade 0.7s 0.5s both;
-}
-
-.not-in-view {
-  opacity: 0;
-}
-
-@keyframes fade {
-  0% {
-    opacity: 0;
-    transform: translate(0, -1rem);
-    /* scale: 80%; */
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0);
-    /* scale: 100%; */
-  }
 }
 
 .flex-intro > p:nth-child(3) {
@@ -226,7 +205,7 @@ h1 {
   margin: 0 auto;
 }
 
-/* ------------------ BTN ------------------------ */
+/* ------------------ KNAPPAR ------------------------ */
 
 .btn {
   background-color: var(--brown);
@@ -292,6 +271,29 @@ h1 {
   z-index: 2;
   translate: 0rem 10rem;
   font-size: 0.8rem;
+}
+
+/* --------------------- ANIMATION  ---------------------- */
+
+.in-view {
+  animation: fade 0.7s 0.5s both;
+}
+
+.not-in-view {
+  opacity: 0;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+    transform: translate(0, -1rem);
+    /* scale: 80%; */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+    /* scale: 100%; */
+  }
 }
 
 /* --------------------- MEDIA QUERIES ---------------------- */

@@ -43,7 +43,7 @@ const query = {
   },
 };
 
-// Skapa ett request-objekt, metod POST då SCB kräver det. Annars GET
+// Skapa ett request-objekt
 const request = new Request(url, {
   method: "POST",
   body: JSON.stringify(query),
@@ -58,9 +58,10 @@ fetch(request)
     // Gör om objektets värden till en array
     const values = dataSCB.data.map((value) => value.values[0]);
 
-    // Hämta ut länder och årtal, gör årtalen unika
+    // Hämta ut länder och årtal
     const labels = dataSCB.data.map((value) => value.key[0]);
 
+    // Gör årtalen unika
     const years = dataSCB.data.map((value) => value.key[4]);
     const uniqueYears = [...new Set(years)];
 
@@ -74,6 +75,7 @@ fetch(request)
     const dataDE = values.splice(0, uniqueYears.length);
     const dataUS = values.splice(0, uniqueYears.length);
 
+    // Översättning av labels (från ex DK till Denmark), mappning till arrayerna ovan
     const datasets = [
       {
         label: "Denmark",
@@ -114,11 +116,13 @@ fetch(request)
       },
     ];
 
+    //Årtal på x-axeln
     const data = {
       labels: uniqueYears,
       datasets,
     };
 
+    //Inställnignar för chart
     const config = {
       type: "line",
       data,
@@ -126,7 +130,7 @@ fetch(request)
         plugins: {
           legend: {
             onHover: (event) => {
-              event.native.target.style.cursor = "pointer";
+              event.native.target.style.cursor = "pointer"; // Fixa pointer för legends
             },
             onLeave: (event) => {
               event.native.target.style.cursor = "default";
@@ -160,7 +164,7 @@ fetch(request)
             },
             display: true,
             type: "logarithmic",
-            afterBuildTicks: (axis) => (axis.ticks = [10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000].map((v) => ({ value: v }))),
+            afterBuildTicks: (axis) => (axis.ticks = [10000, 20000, 50000, 100000, 200000, 500000, 1000000, 2000000].map((v) => ({ value: v }))), //Enga ticks på y-axeln
           },
         },
       },
@@ -202,12 +206,13 @@ const query2 = {
     format: "JSON",
   },
 };
-
+//Skapa request-objekt
 const request2 = new Request(url2, {
   method: "POST",
   body: JSON.stringify(query2),
 });
 
+//Ställ förfrågningar till API:et via fetch
 fetch(request2)
   .then((response) => response.json())
   .then((dataSCB2) => {
@@ -227,12 +232,11 @@ fetch(request2)
 
     // Använd år för att dela arrayen
     const hazardous = values.splice(0, uniqueYears.length);
-    // console.log("Farliga", hazardous);
-
     const nonHazardous = values.splice(0, uniqueYears.length);
+    // console.log("Farliga", hazardous);
     // console.log("Ofarliga", nonHazardous);
 
-    //Summerar alla värden
+    //Summerar alla värden för de olika kategorierna
     const sumNonHazardous = nonHazardous.reduce(getSum, 0);
     const sumHazardous = hazardous.reduce(getSum, 0);
     function getSum(total, num) {
@@ -242,7 +246,6 @@ fetch(request2)
 
     const datasets = [
       {
-        // labels: ["ofarlig", "farlig"],
         data: [sumHazardous, sumNonHazardous],
         backgroundColor: ["#849d5d", "#db7b74"],
         borderColor: ["#849d5d", "#db7b74"],
@@ -253,7 +256,7 @@ fetch(request2)
       labels: ["Non-hazardous", "Hazardous"],
       datasets,
     };
-
+    //Inställningar för donut-chart
     const config2 = {
       type: "doughnut",
       data: data2,
@@ -275,8 +278,7 @@ fetch(request2)
           legend: {
             position: "top",
             onHover: (event) => {
-              // console.log(event.native.target.style.cursor);
-              event.native.target.style.cursor = "pointer";
+              event.native.target.style.cursor = "pointer"; // Fixa pointer för legends
             },
             onLeave: (event) => {
               event.native.target.style.cursor = "default";
@@ -291,22 +293,22 @@ fetch(request2)
 
 // ---------------------- BUTTON---------------------------
 
-let mybutton = document.getElementById("myBtn");
+// Scroll to top-knapp
+const myButton = document.getElementById("myBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
 window.onscroll = function () {
   scrollFunction();
 };
 
+// Om användaren scrollat ner 500px i body visas knappen
 function scrollFunction() {
   if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-    mybutton.style.display = "block";
+    myButton.style.display = "block";
   } else {
-    mybutton.style.display = "none";
+    myButton.style.display = "none";
   }
 }
 
-// When the user clicks on the button, scroll to the top of the document
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
